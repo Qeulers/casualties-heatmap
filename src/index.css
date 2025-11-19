@@ -1,0 +1,16 @@
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Position zoom controls above the date slider */
+.maplibregl-ctrl-bottom-right {
+  bottom: 80px !important;
+}
