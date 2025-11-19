@@ -15,6 +15,10 @@ dist-ssr
 # Environment variables
 .env
 
+# Data files
+*.csv
+public/*.csv
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -25,3 +29,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
