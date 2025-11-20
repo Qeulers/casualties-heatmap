@@ -59,9 +59,9 @@ export async function loadAndProcessCSV(): Promise<CasualtyIncident[]> {
             let distance_km: number | undefined;
             
             if (hasFirstLocation && hasSecondLocation) {
-              // Both locations available - calculate midpoint
-              midpoint_lat = (row.latitude! + row.latitude_2!) / 2;
-              midpoint_lon = (row.longitude! + row.longitude_2!) / 2;
+              // Both locations available - use first coordinate
+              midpoint_lat = row.latitude!;
+              midpoint_lon = row.longitude!;
               distance_km = calculateDistance(
                 row.latitude!,
                 row.longitude!,
