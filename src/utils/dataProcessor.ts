@@ -1,5 +1,6 @@
 import Papa from 'papaparse';
 import type { CasualtyIncident } from '../types';
+import { supabase, STORAGE_CONFIG } from '../lib/supabase';
 
 // Calculate distance between two points using Haversine formula
 function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
@@ -15,8 +16,26 @@ function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
 }
 
 export async function loadAndProcessCSV(): Promise<CasualtyIncident[]> {
-  const response = await fetch('/merged.csv');
-  const csvText = await response.text();
+  // Fetch CSV from Supabase Storage
+  console.log('Fetching from Supabase:', {
+    bucket: STORAGE_CONFIG.bucketName,
+    path: STORAGE_CONFIG.filePath,
+  });
+
+  const { data, error } = await supabase.storage
+    .from(STORAGE_CONFIG.bucketName)
+    .download(STORAGE_CONFIG.filePath);
+
+  if (error) {
+    console.error('Supabase error details:', error);
+    throw new Error(`Failed to load CSV from Supabase: ${JSON.stringify(error)}`);
+  }
+
+  if (!data) {
+    throw new Error('No data received from Supabase Storage');
+  }
+
+  const csvText = await data.text();
   
   return new Promise((resolve, reject) => {
     Papa.parse<CasualtyIncident>(csvText, {

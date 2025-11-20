@@ -6,6 +6,7 @@ import { DateRangeSlider } from './components/DateRangeSlider';
 import { loadAndProcessCSV, getDateRange, getAllCasualtyTypes } from './utils/dataProcessor';
 import type { CasualtyIncident, FilterState } from './types';
 import { Loader2 } from 'lucide-react';
+import { testSupabaseConnection } from './utils/supabaseTest';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

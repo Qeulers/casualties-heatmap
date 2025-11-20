@@ -11,10 +11,9 @@ export function Login({ onLogin }: LoginProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const correctPassword = String(import.meta.env.VITE_APP_PASSWORD || '');
-    const enteredPassword = password.trim();
+    const correctPassword = import.meta.env.VITE_APP_PASSWORD;
     
-    if (enteredPassword === correctPassword) {
+    if (password === correctPassword) {
       onLogin();
     } else {
       setError(true);
