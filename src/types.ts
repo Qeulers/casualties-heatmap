@@ -31,6 +31,8 @@ export interface FilterState {
     end: Date;
   };
   casualtyTypes: string[];
+  flags: string[];
+  shipTypes: string[];
   showHeatmap: boolean;
   showMarkers: boolean;
 }

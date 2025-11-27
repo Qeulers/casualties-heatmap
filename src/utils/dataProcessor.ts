@@ -112,3 +112,13 @@ export function getAllCasualtyTypes(incidents: CasualtyIncident[]): string[] {
   const types = new Set(incidents.map(i => i.casualty_type).filter(Boolean));
   return Array.from(types).sort();
 }
+
+export function getAllFlags(incidents: CasualtyIncident[]): string[] {
+  const flags = new Set(incidents.map(i => i.flag).filter(Boolean));
+  return Array.from(flags).sort();
+}
+
+export function getAllShipTypes(incidents: CasualtyIncident[]): string[] {
+  const shipTypes = new Set(incidents.map(i => i.ship_type).filter(Boolean));
+  return Array.from(shipTypes).sort();
+}
